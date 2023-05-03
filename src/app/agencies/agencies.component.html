@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div class="header">
+        <h2>Add an Agency</h2>
+      </div>
+      <form (ngSubmit)="onSubmit()" name="agenciesForm" [formGroup]="agenciesForm">
+        <div>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput required placeholder="Enter Name" />
+            <mat-error *ngIf="agenciesForm.get('name')?.errors?.['required']">
+              Name is Required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button style="height: 50px;" mat-flat-button color="primary" class="full-width">Submit</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
