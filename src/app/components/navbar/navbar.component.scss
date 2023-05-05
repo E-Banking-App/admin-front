@@ -4,6 +4,12 @@
 
 .navbar-link {
   text-decoration: none;
+  padding-right: 1rem;
+  color: #ddd;
+  font-weight: 400;
+}
+
+.active-link {
+  font-weight: 500;
   color: #fff;
-  padding-right: 1rem
 }

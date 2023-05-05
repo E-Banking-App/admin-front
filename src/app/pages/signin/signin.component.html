@@ -12,6 +12,9 @@
             <mat-error *ngIf="signinForm.get('email')?.errors?.['required']">
               Email Address is Required
             </mat-error>
+            <mat-error *ngIf="signinForm.get('email')?.errors?.['email']">
+              Enter a Valid Address Email
+            </mat-error>
           </mat-form-field>
         </div>
         <div>
@@ -24,8 +27,8 @@
             <mat-error *ngIf="signinForm.get('password')?.errors?.['required']">
               Password is Required
             </mat-error>
-            <mat-error *ngIf="signinForm.get('password')?.errors?.['minLength(8)']">
-              Password must be at least 8 characters long
+            <mat-error *ngIf="signinForm.get('password')?.hasError('minlength')">
+              Password must be at least 6 characters long
             </mat-error>
           </mat-form-field>
         </div>

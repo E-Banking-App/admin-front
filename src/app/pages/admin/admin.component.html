@@ -1,0 +1,61 @@
+<app-navbar></app-navbar>
+
+
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <div class="header">
+        <h2>Add an Admin</h2>
+      </div>
+      <form (ngSubmit)="onSubmit()" name="adminForm" [formGroup]="adminForm" >
+        <div class="form-container">
+          <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput required placeholder="Enter Email" />
+              <mat-error *ngIf="adminForm.get('email')?.errors?.['email']">
+                Enter a Valid Address Email
+              </mat-error>
+              <mat-error *ngIf="adminForm.get('email')?.errors?.['required']">
+                Email Address is Required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input formControlName="phoneNumber" matInput required placeholder="Enter Phone Number" />
+              <mat-error *ngIf="adminForm.get('phoneNumber')?.errors?.['required']">
+                Phone Number is Required
+              </mat-error>
+              <mat-error *ngIf="adminForm.get('phoneNumber')?.hasError('minlength')">
+                Phone Number must be at least 10 characters long
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input formControlName="firstName" matInput required placeholder="Enter First Name" />
+              <mat-error *ngIf="adminForm.get('firstName')?.errors?.['required']">
+                First Name is Required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input formControlName="lastName" matInput required placeholder="Enter Last Name" />
+              <mat-error *ngIf="adminForm.get('lastName')?.errors?.['required']">
+                Last Name is Required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button style="height: 50px;" mat-flat-button color="primary" class="full-width form-submit">Submit</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

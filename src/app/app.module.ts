@@ -6,15 +6,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule } from './material/material.module'
 
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AgenciesComponent } from './agencies/agencies.component';
-import { AgentComponent } from './agent/agent.component';
-import { ClientComponent } from './client/client.component';
-import { AdminComponent } from './admin/admin.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { SigninComponent } from './signin/signin.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AgenciesComponent } from './pages/agencies/agencies.component';
+import { AgentComponent } from './pages/agent/agent.component';
+import { ClientComponent } from './pages/client/client.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 import {HttpClientModule} from '@angular/common/http'
 
 const routes: Routes = [

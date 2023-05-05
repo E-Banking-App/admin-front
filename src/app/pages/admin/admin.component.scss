@@ -1,0 +1,31 @@
+.container {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-card {
+  width: 70%;
+  text-align: center;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+}
+
+.form-submit {
+  grid-column: 1 / 3;
+}
