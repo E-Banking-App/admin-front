@@ -12,11 +12,11 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Email</mat-label>
-              <input formControlName="email" matInput required placeholder="Enter Email" />
-              <mat-error *ngIf="adminForm.get('email')?.errors?.['email']">
+              <input formControlName="username" matInput required placeholder="Enter Email" />
+              <mat-error *ngIf="adminForm.get('username')?.errors?.['email']">
                 Enter a Valid Address Email
               </mat-error>
-              <mat-error *ngIf="adminForm.get('email')?.errors?.['required']">
+              <mat-error *ngIf="adminForm.get('username')?.errors?.['required']">
                 Email Address is Required
               </mat-error>
             </mat-form-field>

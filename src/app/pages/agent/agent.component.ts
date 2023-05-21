@@ -41,8 +41,8 @@ export class AgentComponent implements OnInit {
   agentForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    emailConfirmation: new FormControl('', [Validators.required, Validators.email]),
+    username: new FormControl('', [Validators.required, Validators.email]),
+    usernameConfirmation: new FormControl('', [Validators.required, Validators.email]),
     cin: new FormControl('', [Validators.required]),
     cinFront: new FormControl('', [Validators.required]),
     cinBack: new FormControl('', [Validators.required]),
@@ -51,8 +51,10 @@ export class AgentComponent implements OnInit {
     phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
     irc: new FormControl('', [Validators.required]),
     ice: new FormControl('', [Validators.required]),
-    agencies: new FormControl<string | Agency>('', [Validators.required]),
+    agency: new FormControl<string | Agency>('', [Validators.required]),
   })
+
+
 
   onCinFrontSelected(event: any) {
     const file = event.target.files[0];
@@ -63,15 +65,21 @@ export class AgentComponent implements OnInit {
   onCinBackSelected(event: any) {
     const file = event.target.files[0];
     console.log("file",file)
-    this.agentForm!.get('cinFront')?.setValue(file);
+    this.agentForm!.get('cinBack')?.setValue(file);
   }
 
   onSubmit() {
     console.log(this.agentForm.value);
-    if(this.agentForm.valid) {
-      this.api.postAgent(this.agentForm.value).subscribe({
+    const formData = new FormData();
+    Object.keys(this.agentForm.controls).forEach((key) => {
+      formData.append(key, this.agentForm.get(key)?.value);
+    });
+    console.log(formData)
+    if(this.agentForm.get('username')?.value === this.agentForm.get('usernameConfirmation')?.value && this.agentForm.valid) {
+      this.api.postAgent(formData).subscribe({
+      // this.api.postAgent(this.agentForm.value).subscribe({
         next: (result : any) => {
-          console.log(result);
+          console.log("res",result);
           this.agentForm.reset()
           this.openSnackBar("Agent Added Successfully", "Success")
         },
@@ -83,15 +91,22 @@ export class AgentComponent implements OnInit {
     }
   }
 
-  agencies: Agency[] = [{name: 'Agency 1'}, {name: 'Agency 2'}, {name: 'Agency 3'}];
+  agencies: Agency[] = [];
   filteredAgencies: Observable<Agency[]> = new Observable<Agency[]>();
 
   getAgencies(){
     console.log("Get Agencies");
     this.apiAgencies.getAgencies().subscribe({
       next: (result: any) => {
-        this.agencies = result
-        console.log(result);
+        this.agencies = result.map(({ id, ...rest }: any) => rest);
+        console.log("result",result.map(({ id, ...rest }: any) => rest));
+        this.filteredAgencies = this.agentForm!.get('agency')?.valueChanges.pipe(
+          startWith(''),
+          map(value => {
+            const name = typeof value === 'string' ? value : value?.name;
+            return name ? this._filter(name as string) : this.agencies.slice();
+          }),
+        ) as Observable<Agency[]>;
       },
       error: (err: any)=> {
         console.error(err)
@@ -101,13 +116,6 @@ export class AgentComponent implements OnInit {
 
   ngOnInit() {
     this.getAgencies()
-    this.filteredAgencies = this.agentForm!.get('agencies')?.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.name;
-        return name ? this._filter(name as string) : this.agencies.slice();
-      }),
-    ) as Observable<Agency[]>;
   }
 
   displayFn(agency: Agency): string {

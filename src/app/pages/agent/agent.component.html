@@ -7,7 +7,7 @@
       <div class="header">
         <h2>Add an Agent</h2>
       </div>
-      <form (ngSubmit)="onSubmit()" name="agentForm" [formGroup]="agentForm" >
+      <form (ngSubmit)="onSubmit()" name="agentForm" [formGroup]="agentForm" enctype="multipart/form-data">
         <div class="form-container">
           <div>
             <mat-form-field class="full-width" appearance="outline">
@@ -30,11 +30,11 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Email</mat-label>
-              <input formControlName="email" matInput required placeholder="Enter Email" />
-              <mat-error *ngIf="agentForm.get('email')?.errors?.['required']">
+              <input formControlName="username" matInput required placeholder="Enter Email" />
+              <mat-error *ngIf="agentForm.get('username')?.errors?.['required']">
                 Email is Required
               </mat-error>
-              <mat-error *ngIf="agentForm.get('email')?.errors?.['email']">
+              <mat-error *ngIf="agentForm.get('username')?.errors?.['email']">
                 Enter a Valid Address Email
               </mat-error>
             </mat-form-field>
@@ -42,11 +42,11 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Confirm Email</mat-label>
-              <input formControlName="emailConfirmation" matInput required placeholder="Confirm Email" />
-              <mat-error *ngIf="agentForm.get('emailConfirmation')?.errors?.['required']">
+              <input formControlName="usernameConfirmation" matInput required placeholder="Confirm Email" />
+              <mat-error *ngIf="agentForm.get('usernameConfirmation')?.errors?.['required']">
                 Email Confirmation is Required
               </mat-error>
-              <mat-error *ngIf="agentForm.get('emailConfirmation')?.errors?.['email']">
+              <mat-error *ngIf="agentForm.get('usernameConfirmation')?.errors?.['email']">
                 Enter a Valid Address Email
               </mat-error>
             </mat-form-field>
@@ -137,8 +137,8 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Agency</mat-label>
-              <input type="text" matInput formControlName="agencies" [matAutocomplete]="auto">
-              <mat-error *ngIf="agentForm.get('agencies')?.errors?.['required']">
+              <input type="text" matInput formControlName="agency" [matAutocomplete]="auto">
+              <mat-error *ngIf="agentForm.get('agency')?.errors?.['required']">
                 Agency is Required
               </mat-error>
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">

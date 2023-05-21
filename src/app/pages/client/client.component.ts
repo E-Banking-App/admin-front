@@ -29,7 +29,7 @@ export class ClientComponent {
   }
 
   clientForm = new FormGroup({
-    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(10)]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [ Validators.email]),
