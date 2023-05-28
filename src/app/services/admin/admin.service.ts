@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Api} from "../../utils/api"
 
 @Injectable({
@@ -9,10 +9,16 @@ export class AdminService {
   constructor(private http: HttpClient) { }
 
   postAdmin(data: any) {
-    return this.http.post<any>(`${Api}/admin`, data)
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<any>(`${Api}/admin`, data, {headers})
   }
 
   getAdmins() {
-    return this.http.get<any>(`${Api}/admin`)
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<any>(`${Api}/admin`, {headers})
   }
 }

@@ -8,11 +8,11 @@
         <div>
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Email</mat-label>
-            <input formControlName="email" matInput required placeholder="Enter Email" />
-            <mat-error *ngIf="signinForm.get('email')?.errors?.['required']">
+            <input formControlName="username" matInput required placeholder="Enter Email" />
+            <mat-error *ngIf="signinForm.get('username')?.errors?.['required']">
               Email Address is Required
             </mat-error>
-            <mat-error *ngIf="signinForm.get('email')?.errors?.['email']">
+            <mat-error *ngIf="signinForm.get('username')?.errors?.['email']">
               Enter a Valid Address Email
             </mat-error>
           </mat-form-field>

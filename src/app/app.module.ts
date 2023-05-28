@@ -16,14 +16,15 @@ import { SigninComponent } from './pages/signin/signin.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import {HttpClientModule} from '@angular/common/http'
+import { AuthGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'agencies', component: AgenciesComponent },
-  { path: 'agent', component: AgentComponent },
-  { path: 'client', component: ClientComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardGuard] },
+  { path: 'agencies', component: AgenciesComponent, canActivate: [AuthGuardGuard] },
+  { path: 'agent', component: AgentComponent, canActivate: [AuthGuardGuard] },
+  { path: 'client', component: ClientComponent, canActivate: [AuthGuardGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardGuard] },
   { path: '**', component: NotfoundComponent }
 ];
 
