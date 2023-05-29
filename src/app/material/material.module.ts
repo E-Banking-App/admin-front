@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule} from '@angular/material/sort';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
 
 import {ReactiveFormsModule} from '@angular/forms'
 
@@ -27,6 +28,7 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatSortModule,
   MatAutocompleteModule,
+  MatSelectModule,
 ]
 
 @NgModule({

@@ -10,6 +10,20 @@
       <form (ngSubmit)="onSubmit()" name="clientForm" [formGroup]="clientForm" >
         <div class="form-container">
           <div>
+            <mat-form-field class="list">
+              <mat-label>Payement Accounts</mat-label>
+              <mat-select formControlName="account">
+                <mat-option *ngFor="let account of accounts" [value]="account.value">
+                  {{account.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="clientForm.get('account')?.errors?.['required']">
+                Account Type is Required
+              </mat-error>
+              </mat-form-field>
+            </div>
+            <br/>
+          <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Phone Number</mat-label>
               <input formControlName="username" matInput required placeholder="Enter Phone Number" />

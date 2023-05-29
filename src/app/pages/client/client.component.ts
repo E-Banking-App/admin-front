@@ -7,6 +7,11 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 
+interface Account {
+  value: number;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
@@ -28,7 +33,14 @@ export class ClientComponent {
     });
   }
 
+  accounts: Account[] = [
+    {value: 200, viewValue: 'Compte 200'},
+    {value: 5000, viewValue: 'Compte 5000'},
+    {value: 20000, viewValue: 'Compte 20000'},
+  ];
+
   clientForm = new FormGroup({
+    account: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required, Validators.minLength(10)]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
